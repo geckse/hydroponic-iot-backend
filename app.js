@@ -11,11 +11,11 @@ var liveConfig = {
 const express = require('express');
 const app = express();
 
-app.get('/', function (req, res) {
+app.get('/', (req, res) => {
   res.json(liveConfig);
 });
 
-app.get('/water/off', function (req, res) {
+app.get('/water/off', (req, res) => {
   devices.forEach(function(d) {
     // turn pumps off and send to client devices
     liveConfig.power.waterPumps = false;
@@ -25,7 +25,7 @@ app.get('/water/off', function (req, res) {
   });
 });
 
-app.get('/water/on', function (req, res) {
+app.get('/water/on', (req, res) => {
   devices.forEach(function(d) {
 
     // turn pumps off and send to client devices
@@ -36,8 +36,8 @@ app.get('/water/on', function (req, res) {
   });
 });
 
-app.listen(3000, function () {
-  console.log('app http listening on port 3000!');
+app.listen(8080, () => {
+  console.log('Backend API listening on port 3000.');
 });
 
 
@@ -46,10 +46,10 @@ app.listen(3000, function () {
   On Connection
 */
 const WebSocket = require('ws');
-const wss = new WebSocket.Server({ port: 8080 });
+const wss = new WebSocket.Server({ port: 3000 });
 
-wss.on('connection', function connection(ws) {
-
+wss.on('connection', (ws) => {
+  console.log("New IoT Device Connection");
   // push to known devices
   devices.push(ws);
 
@@ -63,4 +63,4 @@ wss.on('connection', function connection(ws) {
 
 });
 
-console.log('Backend Server Online');
+console.log('Backend Websocket listening on port 8080.');
