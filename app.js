@@ -16,28 +16,26 @@ app.get('/', (req, res) => {
 });
 
 app.get('/water/off', (req, res) => {
+  liveConfig.power.waterPumps = false;
   devices.forEach(function(d) {
     // turn pumps off and send to client devices
-    liveConfig.power.waterPumps = false;
     d.send(JSON.stringify(liveConfig));
 
-    res.json(liveConfig);
   });
+  res.json(liveConfig);
 });
 
 app.get('/water/on', (req, res) => {
+  liveConfig.power.waterPumps = true;
   devices.forEach(function(d) {
-
     // turn pumps off and send to client devices
-    liveConfig.power.waterPumps = true;
     d.send(JSON.stringify(liveConfig));
-
-    res.json(liveConfig);
   });
+  res.json(liveConfig);
 });
 
 app.listen(8080, () => {
-  console.log('Backend API listening on port 3000.');
+  console.log('Backend API listening on port 8080.');
 });
 
 
@@ -63,4 +61,4 @@ wss.on('connection', (ws) => {
 
 });
 
-console.log('Backend Websocket listening on port 8080.');
+console.log('Backend Websocket listening on port 3000.');
