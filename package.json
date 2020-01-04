@@ -1,0 +1,23 @@
+{
+  "name": "hydroponic-iot-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/geckse/hydroponic-iot-backend.git"
+  },
+  "author": "geckse",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/geckse/hydroponic-iot-backend/issues"
+  },
+  "homepage": "https://github.com/geckse/hydroponic-iot-backend#readme",
+  "dependencies": {
+    "ws": "^7.2.1"
+  }
+}
