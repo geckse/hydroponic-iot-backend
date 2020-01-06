@@ -7,6 +7,11 @@ var devices = []; // list of connected iot devices
 
 // shared configs
 var liveConfig = {
+  track: {
+    ec: true,
+    temperature: true,
+    lightTime: true
+  },
   power: {
     waterPumps: false,
     airPumps: false,
