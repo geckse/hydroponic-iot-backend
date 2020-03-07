@@ -25,7 +25,10 @@ var liveConfig = {
   Simple HTTP Server
 */
 const express = require('express');
+const bodyParser = require('body-parser');
 const app = express();
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json())
 
 app.get('/', (req, res) => {
   res.json(liveConfig);
@@ -149,10 +152,13 @@ wss.on('connection', (ws) => {
   // send current config
   ws.send(JSON.stringify(liveConfig));
 
-  /* todo receive data
-  ws.on('message', function incoming(message) {
-    console.log('received: %s', message);
-  });*/
+  /* receive data */
+  ws.on('message', function incoming(datastring) {
+    let data = JSON.parse(datastring);
+    if(data.method == "collect"){
+      console.log("Received Data:",datastring);
+    }
+  });
 
 });
 
